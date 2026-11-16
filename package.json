@@ -1,0 +1,13 @@
+{
+  "name": "microsoft-login-app",
+  "version": "1.0.0",
+  "description": "Microsoft login frontend with Node.js backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.1"
+  }
+}
